@@ -1,0 +1,24 @@
+#define IR_PIN D5     // IR sensor output pin
+#define LED_PIN D2    // External LED
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(IR_PIN, INPUT);      // sensor output
+  pinMode(LED_PIN, OUTPUT);    // LED
+}
+
+void loop() {
+  int sensorValue = digitalRead(IR_PIN);
+
+  if (sensorValue == LOW) {
+    // Object detected (most IR sensors give LOW when something is near)
+    Serial.println("Object Detected!");
+    digitalWrite(LED_PIN, HIGH);  // turn LED ON
+  } else {
+    // No object
+    Serial.println("No Object");
+    digitalWrite(LED_PIN, LOW);   // turn LED OFF
+  }
+
+  delay(200);
+}
