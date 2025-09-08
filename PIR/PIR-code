@@ -1,0 +1,24 @@
+#define PIR_PIN D5    // PIR sensor output pin
+#define LED_PIN D2    // LED indicator
+
+void setup() {
+  Serial.begin(9600);       // start serial at 9600 baud
+  pinMode(PIR_PIN, INPUT);  // PIR output is digital
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  int pirValue = digitalRead(PIR_PIN);
+
+  if (pirValue == HIGH) {
+    // Motion detected
+    Serial.println("Motion Detected!");
+    digitalWrite(LED_PIN, HIGH);  // turn LED ON
+  } else {
+    // No motion
+    Serial.println("No Motion");
+    digitalWrite(LED_PIN, LOW);   // turn LED OFF
+  }
+
+  delay(500);  // wait half a second for stability
+}
